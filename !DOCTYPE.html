@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎉 Happy Birthday  🎂</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+overflow:hidden;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff758c,#ff7eb3,#ffc371);
+position:relative;
+}
+
+/* Animated Background */
+
+body::before{
+content:'';
+position:absolute;
+width:300%;
+height:300%;
+background:radial-gradient(circle,rgba(255,255,255,.2),transparent 60%);
+animation:rotate 25s linear infinite;
+}
+
+@keyframes rotate{
+100%{
+transform:rotate(360deg);
+}
+}
+
+/* Card */
+
+.card{
+position:relative;
+z-index:10;
+background:rgba(255,255,255,.18);
+backdrop-filter:blur(18px);
+padding:35px;
+border-radius:25px;
+text-align:center;
+color:white;
+width:90%;
+max-width:420px;
+box-shadow:0 20px 45px rgba(0,0,0,.25);
+animation:pop 1s ease;
+}
+
+@keyframes pop{
+from{
+transform:scale(.4);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+h1{
+font-family:'Great Vibes',cursive;
+font-size:60px;
+margin-bottom:10px;
+text-shadow:0 0 20px white;
+}
+
+h2{
+font-size:34px;
+margin-bottom:15px;
+}
+
+p{
+font-size:18px;
+line-height:1.7;
+margin-bottom:25px;
+}
+
+button{
+padding:15px 35px;
+font-size:18px;
+border:none;
+border-radius:40px;
+cursor:pointer;
+background:white;
+color:#ff4081;
+font-weight:bold;
+transition:.3s;
+box-shadow:0 0 20px rgba(255,255,255,.8);
+}
+
+button:hover{
+transform:scale(1.08);
+box-shadow:0 0 40px white;
+}
+
+/* Balloons */
+
+.balloon{
+position:absolute;
+bottom:-150px;
+width:70px;
+height:90px;
+border-radius:50%;
+animation:float linear infinite;
+}
+
+.balloon:after{
+content:'';
+position:absolute;
+width:2px;
+height:80px;
+background:white;
+left:50%;
+top:90px;
+}
+
+.red{background:#ff4b5c;left:10%;animation-duration:8s;}
+.blue{background:#4da6ff;left:30%;animation-duration:10s;}
+.green{background:#66ff99;left:50%;animation-duration:9s;}
+.yellow{background:#ffd93d;left:70%;animation-duration:7s;}
+.purple{background:#cc66ff;left:88%;animation-duration:11s;}
+
+@keyframes float{
+0%{
+transform:translateY(0);
+}
+100%{
+transform:translateY(-120vh);
+}
+}
+
+/* Responsive */
+
+@media(max-width:600px){
+
+h1{
+font-size:45px;
+}
+
+h2{
+font-size:26px;
+}
+
+p{
+font-size:16px;
+}
+
+button{
+font-size:16px;
+padding:13px 28px;
+}
+
+.card{
+padding:25px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="balloon red"></div>
+<div class="balloon blue"></div>
+<div class="balloon green"></div>
+<div class="balloon yellow"></div>
+<div class="balloon purple"></div>
+
+<div class="card">
+
+<h1>🎂</h1>
+
+<h2>Happy Birthday Abhishek !</h2>
+
+<p>
+Wishing you endless happiness, success,  laughter.
+May every dream you have come true and may your year be filled with unforgettable memories.
+🎉🎈🎁
+</p>
+
+<button onclick="celebrate()">
+🎊 Celebrate
+</button>
+
+</div>
+
+<!-- Optional Music -->
+<!--
+<audio id="music" loop>
+<source src="birthday.mp3" type="audio/mp3">
+</audio>
+-->
+
+<!-- Confetti -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<script>
+
+function celebrate(){
+
+// document.getElementById("music").play();
+
+var duration = 5000;
+var animationEnd = Date.now() + duration;
+
+var defaults = {
+startVelocity:30,
+spread:360,
+ticks:60,
+zIndex:9999
+};
+
+function randomInRange(min,max){
+return Math.random()*(max-min)+min;
+}
+
+var interval = setInterval(function(){
+
+var timeLeft = animationEnd - Date.now();
+
+if(timeLeft<=0){
+return clearInterval(interval);
+}
+
+var particleCount = 60*(timeLeft/duration);
+
+confetti(Object.assign({},defaults,{
+particleCount,
+origin:{
+x:randomInRange(0.1,0.3),
+y:Math.random()-0.2
+}
+}));
+
+confetti(Object.assign({},defaults,{
+particleCount,
+origin:{
+x:randomInRange(0.7,0.9),
+y:Math.random()-0.2
+}
+}));
+
+},250);
+
+}
+
+// Auto Celebration
+setTimeout(celebrate,800);
+
+</script>
+
+</body>
+</html>
